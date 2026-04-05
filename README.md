@@ -1,11 +1,14 @@
-# Template for Tona's academic papers
+# No Countable Basis for Borel Digraphs of Dichromatic Number at Least Three
 
-PDF gets rendered with every commit for a persistent live version you can share or embed in your website. See [here](https://tonamatos.github.io/tonas-paper-template/main.pdf) for the rendered template PDF.
+Find the latest rendered PDF [here](https://tonamatos.github.io/BorelDichromaticNumber/main.pdf).
 
-You can also make a simple html landing page and host it here.
+## Abstract
 
-Meant to be used with my style files. See [here](https://github.com/tonamatos/tonas-latex).
+I prove that the Borel directed graphs whose vertex set admits a partition into two Borel acyclic sets form a $\mathbf\Sigma^1_2$-complete set; equivalently, that the set of Borel digraphs with Borel dichromatic number at least~$3$ is $\mathbf\Pi^1_2$-complete.
+It follows that no countable family of Borel digraphs can serve as a basis for this class under Borel homomorphism and, more generally, that any basis must be at least as complex as~$\mathbf\Pi^1_2$.
+The proof lifts the classical NP-completeness reduction of Bokal, Fijavž, Juvan, Kayll, and Mohar to the Borel setting, using the coding framework of Thornton.
+This in contrast with the recent result of Raghavan and Xiao, who constructed a continuum-size basis of Borel directed graphs for Borel directed graphs of \emph{uncountable} Borel dichromatic number, which adds to the picture initiated by Todorčević and Vidnyánszky for the undirected case.
 
-## Installation and usage
+## Typesetting
 
-Clone as a template, replace with your own files. Don't forget to install and update the submodules.
+Typeset with [tonas-latex](https://github.com/tonamatos/tonas-latex).
