@@ -3,19 +3,8 @@ message: "Please cite as below."
 authors:
   - family-names: "Matos-Wiederhold"
     given-names: "Tonatiuh"
-title: "Title"
+title: "Borel dichromatic number and "
 version: 1.0.0
 doi: ""
-date-released: 2026-
-url: "https://tonamatos.github.io/"
-preferred-citation:
-  type: article
-  authors:
-    - family-names: "Matos-Wiederhold"
-      given-names: "Tonatiuh"
-  doi: ""
-  journal: ""
-  month: 1
-  title: ""
-  volume: 
-  year: 2026
+date-released: 2026-04-05
+url: "https://tonamatos.github.io/BorelDichromaticNumber/main.pdf"
