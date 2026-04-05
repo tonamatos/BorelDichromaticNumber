@@ -1,4 +1,4 @@
-# No Countable Basis for Borel Digraphs of Dichromatic Number at Least Three
+# No Countable Basis for Borel Directed Graphs of Dichromatic Number at Least Three
 
 Find the latest rendered PDF [here](https://tonamatos.github.io/BorelDichromaticNumber/main.pdf).
 
