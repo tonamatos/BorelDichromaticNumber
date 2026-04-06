@@ -16,6 +16,7 @@
 }{}{
     I prove that the Borel directed graphs whose vertex set admits a partition into two Borel acyclic sets form a $\mathbf\Sigma^1_2$-complete set; equivalently, that deciding whether a Borel directed graph has Borel dichromatic number at least~$3$ is a $\mathbf\Pi^1_2$-complete problem.
     It follows that no countable family of Borel directed graphs can serve as a basis for this class under Borel homomorphism and, more generally, that any basis must be at least as complex as~$\mathbf\Pi^1_2$.
+
     The proof lifts the classical NP-completeness reduction of Bokal, Fijavž, Juvan, Kayll, and Mohar to the Borel setting, using the coding framework of Thornton.
     Combined with a straightforward reduction from undirected to directed coloring problems, this completes the picture for finite Borel chromatic and dichromatic thresholds: for every finite $k$, the set of Borel (directed) graphs admitting a Borel $k$-(di)coloring is $\mathbf\Sigma^1_2$-complete, and in particular admits no countable basis.
     This contrasts with the uncountable threshold, where a single-element basis exists for Borel chromatic number (Kechris--Solecki--Todorčević) and a continuum-size basis exists for Borel dichromatic number (Raghavan--Xiao).
@@ -62,7 +63,7 @@ The Borel dichromatic number can recover the Borel chromatic number in the follo
 \begin{remark}\label{rmk:dichrom-recovers-chrom}
 	Given an undirected graph $G$, let $\vec{G}$ denote the directed graph obtained by replacing each edge $\{u,v\}$ with two opposing arcs $(u,v)$ and $(v,u)$.
 	Then $\vec\chi_B(\vec{G}) = \chi_B(G)$.
-	Indeed, a subset of vertices is acyclic in $\vec{G}$ if and only if it is independent in~$G$: any directed cycle in $\vec{G}$ would in particular contain an arc $(u,v)$ with $\{u,v\}\in E(G)$, so a set containing both $u$ and $v$ is neither acyclic in $\vec{G}$ nor independent in~$G$; conversely, an independent set in~$G$ induces a digraph in~$\vec{G}$ with no arcs at all, hence trivially acyclic.
+	Indeed, a subset of vertices is acyclic in $\vec{G}$ if and only if it is independent in~$G$: any directed cycle in $\vec{G}$ would in particular contain an arc $(u,v)$ with $\{u,v\}\in E(G)$, so a set containing both $u$ and $v$ is neither acyclic in $\vec{G}$ nor independent in~$G$; conversely, an independent set in~$G$ induces a directed graph in~$\vec{G}$ with no arcs at all, hence trivially acyclic.
 	Moreover, the map $\mathrm{code}(G)\mapsto\mathrm{code}(\vec{G})$ is $\Delta^1_1$, since it is built from the edge set using products and unions (Lemma~\ref{lemma:toolkit}(1),(3)).
 	It follows that the $\mathbf\Sigma^1_2$-completeness of Borel $k$-coloring of undirected graphs~\cite{Todorcevic_2021_ComplexProbBorel} implies the $\mathbf\Sigma^1_2$-completeness of Borel $k$-dicoloring of directed graphs, for every $k\geq 4$.
 	The case $k=2$ is not covered by this reduction (since deciding 2-colorability of undirected graphs is trivial), and is precisely the content of Proposition~\ref{prop:main}.
@@ -210,7 +211,7 @@ First, suppose that $c\colon V\to 2$ is a proper 2-coloring of the hypergraph~$H
 For each~$e$, the induced coloring on the shared vertices of~$F_e$ is non-constant, so by Lemma~\ref{lemma:gadget-property} it extends to a 2-dicoloring of~$F_e$.
 Since auxiliary vertices of distinct gadgets are disjoint, combining any choice of extensions with~$c$ on shared vertices gives a global 2-dicoloring of~$D(H)$.
 
-Conversely, suppose that $\psi\colon V_D\to 2$ be a 2-dicoloring of~$D(H)$ and set $\varphi = \psi|_V$.
+Conversely, suppose that $\psi\colon V_D\to 2$ be a 2-dicoloring of~$D(H)$ and set $\varphi = \psi\restriction_V$.
 For any $e = (v_1,v_2,v_3)\in E_{\mathrm{sort}}$, the restriction $\psi\restriction_{V(F_e)}$ is a 2-dicoloring of~$F_e$, so by the contrapositive of Lemma~\ref{lemma:gadget-property}, $\varphi(v_1),\varphi(v_2),\varphi(v_3)$ are not all equal.
 Hence $\varphi$ is a 2-coloring of~$H$.
 \end{proof}
