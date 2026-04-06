@@ -1,6 +1,9 @@
 # No Countable Basis for Borel Directed Graphs of Dichromatic Number at Least Three
 
-Find the latest rendered PDF [here](https://tonamatos.github.io/BorelDichromaticNumber/main.pdf).
+[![arXiv](https://img.shields.io/badge/arXiv-2604.02589-b31b1b.svg)]()
+[![PDF](https://img.shields.io/badge/PDF-Latest_Build-blue.svg)](https://tonamatos.github.io/BorelDichromaticNumber/main.pdf)
+
+Find the latest rendered PDF [here](https://tonamatos.github.io/BorelDichromaticNumber/main.pdf) or view the preprint on [arXiv](https://arxiv.org/abs/).
 
 ## Abstract
 
