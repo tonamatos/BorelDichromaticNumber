@@ -14,10 +14,11 @@
 \makeboxedtitle{No Countable Basis for Borel Directed Graphs of Dichromatic Number at Least Three}{
     Tonatiuh Matos-Wiederhold
 }{}{
-    I prove that the Borel directed graphs whose vertex set admits a partition into two Borel acyclic sets form a $\mathbf\Sigma^1_2$-complete set; equivalently, that the set of Borel directed graphs with Borel dichromatic number at least~$3$ is $\mathbf\Pi^1_2$-complete.
+    I prove that the Borel directed graphs whose vertex set admits a partition into two Borel acyclic sets form a $\mathbf\Sigma^1_2$-complete set; equivalently, that deciding whether a Borel directed graph has Borel dichromatic number at least~$3$ is a $\mathbf\Pi^1_2$-complete problem.
     It follows that no countable family of Borel directed graphs can serve as a basis for this class under Borel homomorphism and, more generally, that any basis must be at least as complex as~$\mathbf\Pi^1_2$.
     The proof lifts the classical NP-completeness reduction of Bokal, Fijavž, Juvan, Kayll, and Mohar to the Borel setting, using the coding framework of Thornton.
-    This in contrast with the recent result of Raghavan and Xiao, who constructed a continuum-size basis of Borel directed graphs for Borel directed graphs of \emph{uncountable} Borel dichromatic number, which adds to the picture initiated by Todorčević and Vidnyánszky for the undirected case.
+    Combined with a straightforward reduction from undirected to directed coloring problems, this completes the picture for finite Borel chromatic and dichromatic thresholds: for every finite $k$, the set of Borel (directed) graphs admitting a Borel $k$-(di)coloring is $\mathbf\Sigma^1_2$-complete, and in particular admits no countable basis.
+    This contrasts with the uncountable threshold, where a single-element basis exists for Borel chromatic number (Kechris--Solecki--Todorčević) and a continuum-size basis exists for Borel dichromatic number (Raghavan--Xiao).
 }
 
 \section{Introduction}\label{sec:borel-dichrom-intro}
@@ -47,22 +48,33 @@ In \cite{Todorcevic_2021_ComplexProbBorel}, Todorčević and Vidnyánszky recent
 In particular, no countable family of Borel graphs can serve as a basis for this class.
 Moreover, their argument rules out the existence of a simple $G_0$-type dichotomy substituting $\aleph_0$ in \eqref{eq:G0-dichotomy} for any value in $3,4,5\dots$.
 Interestingly, when substituting the value $2$, there again is a single Borel graph that makes a dichotomy like \eqref{eq:G0-dichotomy} hold.
-This is known as the $L_0$~dichotomy and is the main result of \cite{L0paper}.\footnote{See also \cite{} for a different proof {that I wrote myself, unpublished}.}
+This is known as the $L_0$~dichotomy and is the main result of \cite{L0paper}.
 
 Very recently, Raghavan and Xiao~\cite{RaghavanXiao2024} established a dichotomy for the \emph{Borel dichromatic number} that generalizes the $\mathbb{G}_0$-dichotomy to directed graphs: they showed that a continuum-size family of directed graphs characterizes when a Borel directed graph has uncountable Borel dichromatic number.
 This continuum-size basis consists of pairwise Borel-incomparable directed graphs, but it is unknown whether any smaller basis exists; in particular, the question of whether a \emph{countable} basis suffices is open.
 
-One can interpret the extistence of a small (i.e.\ singleton, or finite, or countable) basis as a sort of measure of complexity of the associated decision problem.
+One can interpret the existence of a small (i.e.\ singleton, or finite, or countable) basis as a sort of measure of complexity of the associated decision problem.
 For instance, the existence of $\mathbb{G}_0$ says that deciding whether a Borel graph has uncountable Borel chromatic number is ``straightforward:'' one only has to verify one possible ill-behaved property, namely containing a homomorphic copy of $\mathbb{G}_0$, to give a positive answer; and in some sense, finding this homomorphic copy is the \emph{only} way of proving that a Borel graph has uncountable Borel chromatic number.
-In contrast, deciding whether a Borel graph has infinite Borel chromatic number is a much more complex task, as no easily describable method exists for deciding this in terms of graph homomomorphisms, and so different graphs probably require wildly different proving methods, if any.
+In contrast, deciding whether a Borel graph has infinite Borel chromatic number is a much more complex task, as no easily describable method exists for deciding this in terms of graph homomorphisms, and so different graphs probably require wildly different proving methods, if any.
 
-It is natural to ask whether the Todorčević--Vidnyánszky phenomenon also occurs in the directed setting at finite thresholds, or if there is a directed analog for the $L_0$ dichotomy:
+The Borel dichromatic number can recover the Borel chromatic number in the following sense.
+
+\begin{remark}\label{rmk:dichrom-recovers-chrom}
+	Given an undirected graph $G$, let $\vec{G}$ denote the directed graph obtained by replacing each edge $\{u,v\}$ with two opposing arcs $(u,v)$ and $(v,u)$.
+	Then $\vec\chi_B(\vec{G}) = \chi_B(G)$.
+	Indeed, a subset of vertices is acyclic in $\vec{G}$ if and only if it is independent in~$G$: any directed cycle in $\vec{G}$ would in particular contain an arc $(u,v)$ with $\{u,v\}\in E(G)$, so a set containing both $u$ and $v$ is neither acyclic in $\vec{G}$ nor independent in~$G$; conversely, an independent set in~$G$ induces a digraph in~$\vec{G}$ with no arcs at all, hence trivially acyclic.
+	Moreover, the map $\mathrm{code}(G)\mapsto\mathrm{code}(\vec{G})$ is $\Delta^1_1$, since it is built from the edge set using products and unions (Lemma~\ref{lemma:toolkit}(1),(3)).
+	It follows that the $\mathbf\Sigma^1_2$-completeness of Borel $k$-coloring of undirected graphs~\cite{Todorcevic_2021_ComplexProbBorel} implies the $\mathbf\Sigma^1_2$-completeness of Borel $k$-dicoloring of directed graphs, for every $k\geq 4$.
+	The case $k=2$ is not covered by this reduction (since deciding 2-colorability of undirected graphs is trivial), and is precisely the content of Proposition~\ref{prop:main}.
+\end{remark}
+
+It is natural to ask whether the Todorčević--Vidnyánszky phenomenon also occurs in the directed setting at the remaining finite threshold, or if there is a directed analog for the $L_0$ dichotomy:
 
 \begin{quote}
 \emph{Is there a countable basis for the class of Borel directed graphs with Borel dichromatic number at least~$3$?}
 \end{quote}
 
-This short paper gives a negative answer.
+This paper gives a negative answer, thereby completing the picture for all finite thresholds of both the Borel chromatic and dichromatic numbers.
 
 \subsection{Main results}
 
@@ -92,10 +104,11 @@ The following table summarizes the basis landscape, contrasting the undirected a
 	\textbf{Class} & \textbf{Existence of small basis} & \textbf{Reference} \\
 	\hline
 	$\chi_B(G) > \aleph_0$ & Yes (size 1: $\mathbb{G}_0$) & \cite{kechris1999borel} \\
-	$\chi_B(G)>3$ & No (class is $\mathbf\Pi^1_2$-complete) & \cite{Todorcevic_2021_ComplexProbBorel} \\
-	$\chi_B(G)>2$ & Yes (size 1: $\mathbb{L}_0$) & \cite{L0paper} \\
+	$\chi_B(G) > 2$ & Yes (size 1: $\mathbb{L}_0$) & \cite{L0paper} \\
+	$\chi_B(G) > k$, $k\geq 3$ & No ($\mathbf\Pi^1_2$-complete) & \cite{Todorcevic_2021_ComplexProbBorel} \\
+	\hline
 	$\vec\chi_B(D) > \aleph_0$ & Yes (size $\mathfrak{c}$) & \cite{RaghavanXiao2024} \\
-	$\vec\chi_B(D) \geq 3$ & No (class is $\mathbf\Pi^1_2$-complete) & Prop.~\ref{prop:main} \\
+	$\vec\chi_B(D) > k$, $k\geq 2$ & No ($\mathbf\Pi^1_2$-complete) & Prop.~\ref{prop:main}, Rmk.~\ref{rmk:dichrom-recovers-chrom} \\
 	\hline
 \end{tabular}
 \end{center}
@@ -103,7 +116,8 @@ The following table summarizes the basis landscape, contrasting the undirected a
 
 \noindent
 The picture reveals a notable difference between the undirected and directed settings at the uncountable threshold: a single graph suffices as a basis in the undirected case, while a continuum-size family is needed for directed graphs.
-With finitely many colors, both settings exhibit the same completeness obstruction to a countable basis, but at different thresholds.
+With finitely many colors, both settings exhibit the same completeness obstruction to a countable basis, though at different thresholds: the phenomenon begins at $k=3$ for undirected graphs and already at $k=2$ for directed graphs, mirroring the classical NP-completeness landscape.
+The case $k=2$ for directed graphs, established in this paper, is the last remaining piece of this picture (see Remark~\ref{rmk:dichrom-recovers-chrom}).
 
 Several questions are posed in Section~\ref{sec:questions}.
 
@@ -217,7 +231,7 @@ The set of nice codes for locally finite Borel 3-uniform hypergraphs admitting a
 
 It therefore suffices to produce a $\Delta^1_1$ reduction from the set of codes for Borel 2-colorable 3-uniform hypergraphs to the set of codes for Borel 2-dicolorable directed graphs.
 
-\section{The construction is \texorpdfstring{$\Delta^1_1$}{delta-one-one} in the codes}
+\subsection{The construction is \texorpdfstring{$\Delta^1_1$}{delta-one-one} in the codes}
 
 Let $H$ be a locally finite Borel 3-uniform hypergraph with vertex set $V\subseteq\NN$ and hyperedge set $E\subseteq V^3$.
 We fix a $\Delta^1_1$ linear order~$\preceq$ on~$\NN$ and encode the template gadget~$F$, its label set~$T$, and its arc set~$E_T$ by canonical finite sequences in~$\NN$.
@@ -230,14 +244,18 @@ Then, build the vertex set.
 Define $V_D = V \cup \bigl(E_{\mathrm{sort}}\times T_{\mathrm{aux}}\bigr)$, which is a union of~$V$ with a product, hence $\Delta^1_1$ on codes by Lemma~\ref{lemma:toolkit}(1),(3).
 
 Finally, build the arc set.
-For each $e = (v_1,v_2,v_3)\in E_{\mathrm{sort}}$ and each template arc $(u,v)\in E_T$, define the corresponding arc of~$D(H)$ by the substitution:
+For each $e = (v_1,v_2,v_3)\in E_{\mathrm{sort}}$ and each template arc $(u,v)\in E_T$, define the \emph{substitution map} $\varphi_H\colon E_{\mathrm{sort}}\times E_T\to V_D^2$ that sends a pair $(e,(u,v))$ to the corresponding arc of~$D(H)$, by replacing each label $\ell\in T$ with its realization in~$D(H)$:
 \begin{itemize}[nosep]
-  \item a shared label~$a$ in position~$i$ maps to the vertex $v_i\in V$;
-  \item an auxiliary label~$t\in T_{\mathrm{aux}}$ maps to $(e,t)\in E_{\mathrm{sort}}\times T_{\mathrm{aux}}$.
+	\item if $\ell\in T_{\mathrm{shared}}$ is the shared label in position~$i$ (i.e., $\ell = a,b,c$ for $i=1,2,3$ respectively), it maps to the vertex $v_i\in V$ occurring in $e=(v_1,v_2,v_3)$;
+	\item if $\ell\in T_{\mathrm{aux}}$, it maps to $(e,\ell)\in E_{\mathrm{sort}}\times T_{\mathrm{aux}}$.
 \end{itemize}
-The function that maps $(e,(u,v))$ to the corresponding arc in $V_D^2$ is uniformly finite-to-one, as the preimages are bounded by~$|E_T|$.
-The arc set~$A_D$ is obtained as the image of $E_{\mathrm{sort}}\times E_T$ under this map, using products, the image operation, and unions.
-By Lemma~\ref{lemma:toolkit}(1),(3),(5), this is $\Delta^1_1$ on codes.
+This substitution is a recursive operation on the components of the tuple $(e,(u,v))$: it extracts coordinates of~$e$ (a projection) or forms pairs with~$e$ (a product), both of which are $\Delta^1_1$ operations.
+Hence $\varphi_H$ is $\Delta^1_1$ in the code of~$H$ and in the (fixed, computable) code of~$E_T$.
+
+The arc set is $A_D = \varphi_H(E_{\mathrm{sort}}\times E_T)$.
+To apply Lemma~\ref{lemma:toolkit}(5), we need $\varphi_H$ to be countable-to-one.
+This holds: for any arc $\alpha\in A_D$, the preimage $\varphi_H^{-1}(\alpha)$ is finite, since $E_T$ is finite and, by local finiteness of~$H$, each vertex of~$V$ appears in only finitely many hyperedges in~$E_{\mathrm{sort}}$.
+By Lemma~\ref{lemma:toolkit}(1),(3),(5), the arc set~$A_D$ is $\Delta^1_1$ on codes.
 
 Applying the simple-to-nice code translation from the coding framework (Definition~\ref{def:simple-nice-codes}(v)), we obtain:
 
@@ -321,9 +339,11 @@ $$
 	\vec\chi_B(D)\geq 3 \quad\Longleftrightarrow\quad \exists\, H\in\mathbf{B},\ \exists\text{ Borel homomorphism }H\to D
 $$
 must define a $\mathbf\Pi^1_2$-complete set, since the left-hand side is $\mathbf\Pi^1_2$-complete by Proposition~\ref{prop:main}.
-In particular, $\mathbf{B}$ itself must be at least $\mathbf\Pi^1_2$-hard; therefore, no basis of complexity $\mathbf\Sigma^1_2$ or lower can exist.
-This means that any basis is necessarily at least as complicated as the set of all directed graphs without a Borel acyclic 2-coloring.
-The fact that $\mathbf\Sigma^1_2\neq\mathbf\Pi^1_2$ used above follows from $\Pi^1_1$-determinacy, which is provable from standard large cardinal hypotheses.
+If $\mathbf{B}\in\mathbf\Sigma^1_2$ (viewed as a subset of the code space), then ``$H\in\mathbf{B}$'' is a $\mathbf\Sigma^1_2$ condition on the code of~$H$, and ``there exists a Borel homomorphism $H\to D$'' is $\mathbf\Sigma^1_2$ in the codes of~$H$ and~$D$ (as in the proof of Corollary~\ref{cor:no-basis}).
+The conjunction of two $\mathbf\Sigma^1_2$ conditions is $\mathbf\Sigma^1_2$, and existential quantification preserves $\mathbf\Sigma^1_2$, so the right-hand side would be $\mathbf\Sigma^1_2$ in the code of~$D$.
+But this contradicts $\mathbf\Pi^1_2$-completeness of the left-hand side, since $\mathbf\Sigma^1_2\neq\mathbf\Pi^1_2$.
+Hence $\mathbf{B}\notin\mathbf\Sigma^1_2$: any basis must be at least $\mathbf\Pi^1_2$-hard as a subset of the code space, and is therefore at least as complex to describe as the set of all directed graphs without a Borel acyclic 2-coloring.
+The separation $\mathbf\Sigma^1_2\neq\mathbf\Pi^1_2$ used here follows from $\Pi^1_1$-determinacy, which is provable from standard large cardinal hypotheses.
 \end{remark}
 
 \section{Questions}\label{sec:questions}
@@ -337,14 +357,11 @@ This section collects several natural questions suggested by our results, the wo
 	\emph{Does every basis for this class have size~$\mathfrak{c}$?}
 	Raghavan has noted (personal communication) that the directed graphs in his family are pairwise non-homomorphic, but it is unknown whether a smaller basis exists.
 	
-	\item \textbf{Higher dichromatic thresholds.}
-	\emph{Is the set of Borel directed graphs admitting a Borel $k$-dicoloring also $\mathbf\Sigma^1_2$-complete for every fixed $k\geq 2$?}
-	In the undirected case, the analogous result holds for all finite thresholds (see~\cite{Todorcevic_2021_ComplexProbBorel}).
-	The natural approach would be to find, for each~$k$, a classical NP-hardness reduction from an appropriate hypergraph coloring problem to $k$-dicoloring and verify that it lifts to the Borel setting.
-	
 	\item \textbf{Structural restrictions.}
 	The result presented here applies to the full class of Borel directed graphs.
 	\emph{Does a countable basis exist when one restricts to structurally simpler classes, say locally finite acyclic Borel directed graphs, or directed graphs generated by a single Borel function?}
+	In the undirected case, Miller~\cite{Miller_2008_MeasurableChromaticNumbers} proved that there is no countable $\leq_B$-basis for graphs of the form~$G_f$ (where $f$ is a Borel function) with $\chi_B(G_f)\geq 3$.
+	The analogous question for directed graphs generated by a single Borel function and dichromatic number remains open.
 	
 	\item \textbf{Borel dichromatic number and Borel order dimension.}
 	Raghavan and Xiao~\cite{RaghavanXiao2024} established a close connection between Borel dichromatic number and a notion of Borel order dimension for Borel quasi-orders.
