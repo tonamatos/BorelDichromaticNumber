@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 
 \usepackage{common/tonas-papers}
 
@@ -15,7 +15,7 @@
     Tonatiuh Matos-Wiederhold
 }{}{
     \noindent
-	I prove that the Borel directed graphs whose vertex set admits a partition into two Borel acyclic sets form a $\mathbf\Sigma^1_2$-complete set; equivalently, that deciding whether a Borel directed graph has Borel dichromatic number at least~$3$ is a $\mathbf\Pi^1_2$-complete problem.
+	This paper proves that the Borel directed graphs whose vertex set admits a partition into two Borel acyclic sets form a $\mathbf\Sigma^1_2$-complete set; equivalently, that deciding whether a Borel directed graph has Borel dichromatic number at least~$3$ is a $\mathbf\Pi^1_2$-complete problem.
     It follows that no countable family of Borel directed graphs can serve as a basis for this class under Borel homomorphism and, more generally, that any basis must be at least as complex as~$\mathbf\Pi^1_2$.
 
     The proof lifts the classical NP-completeness reduction of Bokal, Fijav{\v{z}}, Juvan, Kayll, and Mohar to the Borel setting, using the coding framework of Thornton.
@@ -80,7 +80,7 @@ This paper gives a negative answer, thereby completing the picture for all finit
 
 \subsection{Main results}
 
-I work throughout with \emph{nice codes} in the sense of Thornton~\cite{thornton2022algebraic, thornton-thesis}; see Section~\ref{sec:framework} for a brief review.
+We work throughout with \emph{nice codes} in the sense of Thornton~\cite{thornton2022algebraic, thornton-thesis}; see Section~\ref{sec:framework} for a brief review.
 
 \begin{proposition}\label{prop:main}
 	The set of nice codes for Borel directed graphs admitting a Borel $2$-dicoloring is $\mathbf\Sigma^1_2$-complete.
@@ -93,7 +93,7 @@ I work throughout with \emph{nice codes} in the sense of Thornton~\cite{thornton
 
 The proof of Proposition~\ref{prop:main} proceeds by adapting the classical NP-completeness reduction from 2-coloring of 3-uniform hypergraphs to 2-dicoloring of directed graphs~\cite{Bokal_2004_CircularChrom} to the Borel setting.
 The key step is verifying that this reduction is $\Delta^1_1$ in the codes, following the template established by Thornton in~\cite[Appendix~A]{thornton-thesis} for a similar result about edge 3-coloring.
-I remark that 2-dicoloring of directed graphs is \emph{not} a CSP in the sense of Thornton's algebraic framework~\cite{thornton2022algebraic}, since acyclicity is not a constraint expressible as a homomorphism to a fixed finite template; thus Proposition~\ref{prop:main} does not follow directly from Thornton's general results.
+We remark that 2-dicoloring of directed graphs is \emph{not} a CSP in the sense of Thornton's algebraic framework~\cite{thornton2022algebraic}, since acyclicity is not a constraint expressible as a homomorphism to a fixed finite template; thus Proposition~\ref{prop:main} does not follow directly from Thornton's general results.
 
 \subsection{Context and discussion}
  
@@ -168,9 +168,9 @@ This lemma can typically be used as a black box: to verify that a construction i
 
 \section{The classical reduction}\label{sec:classical}
 
-Now, I recall the reduction from 2-coloring of 3-uniform hypergraphs to 2-dicoloring of directed graphs.
+Now we recall the reduction from 2-coloring of 3-uniform hypergraphs to 2-dicoloring of directed graphs.
 The NP-completeness of 2-dicoloring follows by combining this reduction with the well-known NP-completeness of 2-coloring 3-uniform hypergraphs.
-The reduction is due to Bokal et al.~\cite{Bokal_2004_CircularChrom}; I present it in a form convenient for the Borel lifting.
+The reduction is due to Bokal et al.~\cite{Bokal_2004_CircularChrom}; we present it in a form convenient for the Borel lifting.
 
 \begin{fact}\label{fact:hyp-np}
 	The problem of deciding whether a 3-uniform hypergraph admits a 2-coloring is NP-complete.
@@ -224,7 +224,7 @@ This is be important in Section~\ref{sec:borel}, where it means that no uniformi
 
 \section{The Borel reduction}\label{sec:borel}
 
-I now verify that the construction of Section~\ref{sec:classical} lifts to the Borel setting.
+We now verify that the construction of Section~\ref{sec:classical} lifts to the Borel setting.
 The argument follows the template of~\cite[Theorem~A.9]{thornton2022algebraic}, where a similar verification for edge 3-coloring is carried out.
 
 \begin{fact}[{\cite[Corollary~4.6]{thornton2022algebraic}}]\label{fact:hyp-borel}
