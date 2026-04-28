@@ -1,0 +1,897 @@
+\documentclass[aspectratio=169, 12pt]{beamer}
+
+% --- Theme ---
+\usetheme{default}
+\usecolortheme{orchid}
+\usefonttheme{professionalfonts}
+
+% Clean navigation
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+
+% Colors
+\definecolor{dblue}{RGB}{0,51,102}
+\definecolor{mblue}{RGB}{0,85,150}
+\definecolor{accent}{RGB}{180,40,40}
+\setbeamercolor{structure}{fg=dblue}
+\setbeamercolor{frametitle}{fg=dblue}
+\setbeamercolor{title}{fg=dblue}
+\setbeamercolor{block title}{bg=dblue!15, fg=dblue}
+\setbeamercolor{block body}{bg=dblue!5}
+\setbeamercolor{alerted text}{fg=accent}
+
+% Packages
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, decorations.pathmorphing}
+\usepackage{array}
+
+% Theorem environments for beamer
+\setbeamertemplate{theorems}[numbered]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% Notation
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\CF}{\mathcal{C}_F}
+\newcommand{\vchi}{\vec{\chi}_B}
+\DeclareMathOperator{\dom}{dom}
+
+% Title
+\title{The Borel dichromatic number}
+\author{Tonatiuh Matos-Wiederhold}
+\institute{University of Toronto}
+\date{Caltech Logic Seminar \\ April 29, 2026}
+
+\begin{document}
+
+% =====================================================================
+\begin{frame}
+\titlepage
+\end{frame}
+% =====================================================================
+
+% =====================================================================
+% PART I: BACKGROUND
+% =====================================================================
+
+\begin{frame}{Outline}
+\begin{enumerate}
+	\item \textbf{Background:} Borel chromatic numbers and basis problems
+	\item \textbf{Dichromatic number:} a directed analogue
+	\item \textbf{Classical reduction:} from hypergraphs to digraphs
+	\item \textbf{Borel lifting:} Thornton's coding framework
+	\item \textbf{Open questions}
+\end{enumerate}
+\end{frame}
+
+% --- Borel graphs ---
+
+\begin{frame}{Borel graphs}
+A \alert{Borel graph} $G = (X, E)$ consists of:
+\begin{itemize}
+	\item a standard Borel space $X$ (vertex set),
+	\item a Borel symmetric irreflexive relation $E \subseteq X^2$ (edges).
+\end{itemize}
+
+\medskip
+
+A \alert{Borel $k$-coloring} is a Borel map $c\colon X \to k$ with $c(x) \neq c(y)$ for all $(x,y) \in E$.
+
+\medskip
+
+The \alert{Borel chromatic number} $\chi_B(G)$ is the minimum $k$ admitting a Borel $k$-coloring.
+
+\medskip
+\begin{block}{Basic fact (folklore)}
+Every Borel graph of degree $\leq d$ admits a Borel $(d+1)$-coloring.
+\end{block}
+\end{frame}
+
+% --- Why Borel? ---
+
+\begin{frame}{Why Borel?}
+Every Borel graph has a (possibly non-Borel) proper coloring.
+
+\medskip
+
+The point: \alert{requiring the coloring to be Borel} makes the problem genuinely harder.
+
+\medskip
+
+\begin{example}
+There exist Borel graphs with $\chi(G)=2$ but $\chi_B(G) > \aleph_0$.
+\end{example}
+
+\medskip
+
+The Borel chromatic number captures a notion of \emph{definable complexity} of the coloring problem.
+\end{frame}
+
+% --- The G0 dichotomy ---
+
+\begin{frame}{The $\mathbb{G}_0$-dichotomy (Kechris--Solecki--Todorčević, 1999)}
+
+\begin{theorem}[KST '99]
+There exists a Borel graph $\mathbb{G}_0$ such that, for every analytic graph $G$:
+$$
+\chi_B(G) > \aleph_0
+\quad\Longleftrightarrow\quad
+\mathbb{G}_0 \leq_B G
+$$
+where $\leq_B$ denotes the existence of a Borel homomorphism.
+\end{theorem}
+
+\pause
+\medskip
+
+In other words: $\{\mathbb{G}_0\}$ is a \alert{one-element basis} for the class of Borel graphs with uncountable Borel chromatic number.
+
+\medskip
+
+\textbf{Interpretation:} To prove $\chi_B(G) > \aleph_0$, there is essentially \emph{one} obstruction to find. The problem is ``well-structured.''
+\end{frame}
+
+% --- What is a basis? ---
+
+\begin{frame}{What is a basis?}
+Fix a class $\mathscr{C}$ of Borel graphs (e.g.\ those with $\chi_B \geq k$).
+
+\medskip
+
+A family $\mathbf{B}$ is a \alert{basis} for $\mathscr{C}$ under Borel homomorphism if:
+$$
+G \in \mathscr{C} \quad\Longleftrightarrow\quad \exists\, H \in \mathbf{B},\ H \leq_B G.
+$$
+
+\pause
+\medskip
+
+\textbf{Small basis = ``simple'' decision problem:}
+\begin{itemize}
+	\item Size 1: one obstruction to check (like $\mathbb{G}_0$)
+	\item Finite: finitely many obstructions
+	\item Countable: ``tame'' complexity
+	\item Uncountable or none: the problem is genuinely complex
+\end{itemize}
+\end{frame}
+
+% --- The L0 dichotomy ---
+
+\begin{frame}{The $\mathbb{L}_0$-dichotomy}
+\begin{theorem}[Carroy--Miller--Schrittesser--Vidnyánszky]
+There exists a Borel graph $\mathbb{L}_0$ such that, for every analytic graph $G$:
+$$
+\chi_B(G) > 2
+\quad\Longleftrightarrow\quad
+\mathbb{L}_0 \leq_B G.
+$$
+\end{theorem}
+
+Again a one-element basis, this time for the $2$ vs.\ $3$-color threshold.
+
+\pause
+\medskip
+
+\textbf{So far:} at both the $2/3$-color threshold and the countable/uncountable threshold, there is a clean dichotomy with a one-element basis.
+
+\medskip
+
+\textbf{Question:} Does this continue for higher thresholds?
+\end{frame}
+
+% --- TV: no more dichotomies ---
+
+\begin{frame}{No dichotomy at higher thresholds}
+\begin{theorem}[Todorčević--Vidnyánszky, 2021]
+For every $k \geq 3$, the set of (codes for) Borel graphs admitting a Borel $k$-coloring is $\mathbf{\Sigma}^1_2$-complete.
+\end{theorem}
+
+\pause
+\medskip
+
+\begin{corollary}
+For $k \geq 3$: no countable basis for the class of Borel graphs with $\chi_B(G) > k$.
+\end{corollary}
+
+\medskip
+
+The landscape for \emph{undirected} Borel chromatic numbers is completely understood:
+\begin{center}
+\begin{tabular}{ll}
+	$\chi_B > 2$ & basis of size $1$ \\
+	$\chi_B > k$, $k\geq 3$ & no countable basis \\
+	$\chi_B > \aleph_0$ & basis of size $1$ \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+% --- Sigma12 completeness, informally ---
+
+\begin{frame}{Interlude: what does $\mathbf\Sigma^1_2$-completeness mean?}
+Recall the \alert{projective hierarchy}:
+
+\medskip
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+	\node (s11) at (0,0) {$\Sigma^1_1$ (analytic)};
+	\node (p11) at (4,0) {$\Pi^1_1$ (coanalytic)};
+	\node (d11) at (2,-0.8) {$\Delta^1_1$ (Borel)};
+	\node (s12) at (0,2) {$\Sigma^1_2$};
+	\node (p12) at (4,2) {$\Pi^1_2$};
+	\node (d12) at (2,1.2) {$\Delta^1_2$};
+	\draw[->] (d11) -- (s11);
+	\draw[->] (d11) -- (p11);
+	\draw[->] (s11) -- (d12);
+	\draw[->] (p11) -- (d12);
+	\draw[->] (d12) -- (s12);
+	\draw[->] (d12) -- (p12);
+\end{tikzpicture}
+\end{center}
+
+\medskip
+
+A set $A \subseteq \omega$ is \alert{$\Sigma^1_2$} if there is a $\Pi^1_1$ set $P \subseteq \omega \times \NN$ with:
+$$
+n \in A \quad\Longleftrightarrow\quad \exists x \in \NN,\ (n,x) \in P.
+$$
+
+\end{frame}
+
+\begin{frame}{$\Sigma^1_2$-completeness: the key example}
+\begin{block}{Why ``admits a Borel $k$-coloring'' is $\Sigma^1_2$}
+Given a \emph{nice code} $e_G$ for a Borel graph $G$:
+$$
+\text{``$G$ admits a Borel $k$-coloring''}
+\quad\Longleftrightarrow\quad
+\exists\, e_c \in \omega\; \bigl[\underbrace{\text{``$\mathcal{D}_{e_c}$ is a $k$-coloring of $G$''}}_{\Pi^1_1 \text{ in } e_c, e_G}\bigr]
+$$
+\end{block}
+
+\pause
+\medskip
+
+The inner condition is $\Pi^1_1$ because it asserts:
+\begin{itemize}
+	\item totality: $\forall x \in V(G),\ \exists! i < k,\ c(x) = i$ \quad [$\Pi^1_1$]
+	\item properness: $\forall (x,y) \in E(G),\ c(x) \neq c(y)$ \quad [$\Pi^1_1$]
+\end{itemize}
+
+\medskip
+
+The outer $\exists e_c$ quantifier makes the whole thing $\Sigma^1_2$.
+
+\pause
+\medskip
+
+\alert{$\Sigma^1_2$-complete} means: this set is \emph{as hard as any} $\Sigma^1_2$ set. Every $\Sigma^1_2$ set reduces to it via a $\Delta^1_1$ function.
+\end{frame}
+
+\begin{frame}{Why does $\Sigma^1_2$-completeness destroy countable bases?}
+\begin{proof}[Proof sketch (for chromatic number)]
+Suppose $\mathbf{B} = \{H_1, H_2, \ldots\}$ is a countable basis for $\chi_B(G) > k$. Then:
+$$
+\chi_B(G) > k
+\quad\Longleftrightarrow\quad
+\exists\, n,\ \exists\text{ Borel homomorphism } H_n \to G.
+$$
+
+\medskip
+
+For each fixed $H_n$, ``$\exists$ Borel hom $H_n \to G$'' is $\Sigma^1_2$ in the code for $G$.
+
+\medskip
+
+A countable union of $\Sigma^1_2$ sets is $\Sigma^1_2$.
+
+\medskip
+
+But the left-hand side $\{\text{code}(G) : \chi_B(G) > k\}$ is $\Pi^1_2$-complete.
+
+\medskip
+
+This gives $\Pi^1_2 \subseteq \Sigma^1_2$, contradicting the \alert{strictness of the projective hierarchy}.
+\end{proof}$\chi(G)=2$
+\end{frame}
+
+% =====================================================================
+% PART II: DICHROMATIC NUMBER
+% =====================================================================
+
+\begin{frame}{The dichromatic number (Neumann-Lara, 1982)}
+Let $D = (V, A)$ be a directed graph.
+
+\medskip
+
+A \alert{dicoloring} is a map $c\colon V \to k$ such that every color class induces an \emph{acyclic} subdigraph (no directed cycles).
+
+\medskip
+
+The \alert{dichromatic number} $\vec\chi(D)$ is the minimum such $k$.
+
+\pause
+\medskip
+
+\begin{example}
+\begin{itemize}
+	\item A tournament on 3 vertices forming a directed 3-cycle: $\vec\chi = 2$.
+	\item A directed graph with no directed cycles: $\vec\chi = 1$.
+	\item If $D$ is a symmetric digraph ($\{u,v\} \in E \Leftrightarrow (u,v),(v,u) \in A$): $\vec\chi(D) = \chi(\text{underlying graph})$.
+\end{itemize}
+\end{example}
+\end{frame}
+
+\begin{frame}{Dichromatic vs.\ chromatic: key difference}
+\begin{block}{Classical complexity}
+\begin{itemize}
+	\item ``Is $\chi(G) \leq 2$?'' is decidable in polynomial time (bipartiteness).
+	\item ``Is $\vec\chi(D) \leq 2$?'' is \alert{NP-complete} \quad (Bokal et al., 2004).
+\end{itemize}
+\end{block}
+
+\medskip
+
+The dichromatic number is ``harder'' than the chromatic number: complexity starts already at the $2/3$-color threshold.
+
+\pause
+\medskip
+
+\textbf{Key observation:} Acyclicity is \emph{not} a local constraint.
+
+Checking that a color class is independent (for chromatic number) requires looking at edges one at a time.
+
+Checking that a color class is acyclic may require following long directed paths.
+
+\medskip
+
+In particular, dicoloring is \alert{not a CSP}---acyclicity cannot be expressed as a homomorphism to a fixed finite template.
+\end{frame}
+
+\begin{frame}{Borel dichromatic number}
+For Borel directed graphs, define $\vchi(D)$ analogously, requiring the dicoloring to be Borel.
+
+\medskip
+
+\begin{theorem}[Raghavan--Xiao, 2024]
+There exists a family $\{H_\alpha\}_{\alpha < \mathfrak{c}}$ of Borel digraphs, of size continuum, such that:
+$$
+\vchi(D) > \aleph_0
+\quad\Longleftrightarrow\quad
+\exists\, \alpha,\ H_\alpha \leq_B D.
+$$
+The $H_\alpha$ are pairwise Borel-incomparable.
+\end{theorem}
+
+\pause
+\medskip
+
+This is the directed analogue of the $\mathbb{G}_0$-dichotomy, but the basis has \emph{continuum} many elements instead of one.
+
+\medskip
+
+\textbf{Open:} Is $\mathfrak{c}$ optimal, or could a smaller (perhaps countable) basis exist?
+\end{frame}
+
+\begin{frame}{The main result}
+\begin{proposition}
+The set of nice codes for Borel directed graphs admitting a Borel $2$-dicoloring is $\mathbf\Sigma^1_2$-complete.
+
+Equivalently, the set of nice codes for Borel directed graphs with $\vchi(D) \geq 3$ is $\mathbf\Pi^1_2$-complete.
+\end{proposition}
+
+\pause
+
+\begin{corollary}
+There is no countable basis for Borel digraphs of Borel dichromatic number $\geq 3$.
+\end{corollary}
+
+\pause
+
+\begin{block}{Recovering the chromatic number}
+Given an undirected graph $G$, symmetrize it: $\vec{G}$ has arcs $(u,v)$ and $(v,u)$ for each edge $\{u,v\}$. Then $\vchi(\vec{G}) = \chi_B(G)$.
+
+This reduction is $\Delta^1_1$ on codes, so $\Sigma^1_2$-completeness of $k$-dicoloring for $k \geq 4$ follows from Todorčević--Vidnyánszky.
+\end{block}
+\end{frame}
+
+\begin{frame}{The complete picture}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+	\hline
+	\textbf{Class} & \textbf{Basis?} & \textbf{Reference} \\
+	\hline
+	$\chi_B(G) > \aleph_0$ & Yes, size 1 ($\mathbb{G}_0$) & KST '99 \\
+	$\chi_B(G) > 2$ & Yes, size 1 ($\mathbb{L}_0$) & CMSV \\
+	$\chi_B(G) > k$, $k\geq 3$ & \alert{No} ($\mathbf\Pi^1_2$-complete) & TV '21 \\
+	\hline
+	$\vchi(D) > \aleph_0$ & Yes, size $\mathfrak{c}$ & RX '24 \\
+	$\vchi(D) > k$, $k\geq 2$ & \alert{No} ($\mathbf\Pi^1_2$-complete) & \textbf{this talk} \\
+	\hline
+\end{tabular}
+\end{center}
+
+\pause
+\medskip
+
+The case $k=2$ for directed graphs is the \alert{last missing piece}.
+
+\medskip
+
+The proof: lift the classical NP-completeness reduction to the Borel setting, using Thornton's coding framework.
+\end{frame}
+
+% =====================================================================
+% PART III: THE CLASSICAL REDUCTION
+% =====================================================================
+
+\begin{frame}{Strategy}
+\begin{center}
+\begin{tikzpicture}[
+	box/.style={draw, rounded corners, minimum width=3.5cm, minimum height=1cm, align=center, font=\small},
+	arr/.style={-Stealth, thick}
+]
+	\node[box, fill=dblue!10] (hyp) at (0,0) {3-uniform hypergraph\\2-coloring};
+	\node[box, fill=accent!10] (dig) at (7,0) {Digraph\\2-dicoloring};
+	\node[box, fill=dblue!10] (bhyp) at (0,-2.5) {Borel 3-uniform\\hypergraph 2-coloring};
+	\node[box, fill=accent!10] (bdig) at (7,-2.5) {Borel digraph\\2-dicoloring};
+
+	\draw[arr] (hyp) -- node[above, font=\footnotesize] {Bokal et al.} (dig);
+	\draw[arr] (bhyp) -- node[above, font=\footnotesize] {this talk} (bdig);
+	\draw[arr, dashed, gray] (hyp) -- node[left, font=\footnotesize, gray] {} (bhyp);
+
+	\node[font=\footnotesize, text=mblue] at (0,-3.5) {$\Sigma^1_2$-complete (Thornton)};
+	\node[font=\footnotesize, text=accent] at (7,-3.5) {$\Sigma^1_2$-complete (\textbf{new})};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Step 1: The classical starting point}
+\begin{fact}
+The problem of deciding whether a 3-uniform hypergraph admits a 2-coloring is NP-complete.
+\end{fact}
+
+\medskip
+
+A \alert{3-uniform hypergraph} $H = (V, E)$ has hyperedges $e \in \binom{V}{3}$.
+
+A \alert{2-coloring} is a map $c\colon V \to 2$ such that no hyperedge is monochromatic.
+
+\pause
+\medskip
+
+\textbf{Goal:} Reduce this to 2-dicoloring of directed graphs.
+
+\medskip
+
+\textbf{Idea:} Build a directed graph $D(H)$ from $H$ using a finite \emph{gadget} that translates ``no monochromatic hyperedge'' into ``no monochromatic directed cycle.''
+\end{frame}
+
+\begin{frame}{The template gadget}
+\begin{columns}
+\begin{column}{0.45\textwidth}
+The gadget $F$ has:
+\begin{itemize}
+	\item \alert{Shared vertices} $\{a,b,c\}$ (will become hypergraph vertices)
+	\item \alert{Auxiliary vertices} $\{a',b',c'\}$ (local to each gadget copy)
+\end{itemize}
+
+\medskip
+
+\begin{lemma}[Gadget property]
+A map $\sigma\colon\{a,b,c\}\to 2$ extends to a 2-dicoloring of~$F$ iff $\sigma$ is \alert{not constant}.
+\end{lemma}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{center}
+		\input{figures/bokal-gadget.tex}
+	\end{center}
+\end{column}
+\end{columns}
+
+\pause
+\medskip
+
+\begin{center}
+\small
+\begin{tabular}{c|c}
+	coloring of $\{a,b,c\}$ & extends to $F$? \\
+	\hline
+	$(0,0,1)$, $(0,1,0)$, $(1,0,0)$, \ldots & \alert{Yes} \\
+	$(0,0,0)$ or $(1,1,1)$ & \alert{No}
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{The reduction $H \mapsto D(H)$}
+Fix a 3-uniform hypergraph $H = (V, E)$ and a linear order on $V$.
+
+\medskip
+
+\textbf{Sorted hyperedges:} $E_{\mathrm{sort}} = \{(v_1,v_2,v_3) \in E : v_1 < v_2 < v_3\}$.
+
+\medskip
+
+\textbf{Vertex set of $D(H)$:}
+$$
+V_D = V \;\cup\; \bigl\{(e, t) : e \in E_{\mathrm{sort}},\; t \in \{a', b', c'\}\bigr\}
+$$
+
+\textbf{Arc set:} For each $e = (v_1,v_2,v_3)$, place a copy $F_e$ of the gadget:
+\begin{itemize}
+	\item shared labels $a, b, c \mapsto v_1, v_2, v_3$
+	\item auxiliary labels $a', b', c' \mapsto (e, a'), (e, b'), (e, c')$
+\end{itemize}
+
+\medskip
+
+\alert{Key:} Shared vertices are identified across gadgets. Auxiliary vertices are disjoint.
+\end{frame}
+
+\begin{frame}{Forward direction: $H$ 2-colorable $\Rightarrow$ $D(H)$ 2-dicolorable}
+Let $c\colon V \to 2$ be a 2-coloring of $H$.
+
+\medskip
+
+For each hyperedge $e$: the shared vertices get a non-constant coloring, so by the gadget property it \alert{extends} to a 2-dicoloring of $F_e$.
+
+\medskip
+
+Auxiliary vertices of different gadgets are disjoint $\Rightarrow$ the extensions combine into a global 2-dicoloring of $D(H)$.
+
+\pause
+\bigskip
+
+\begin{center}
+\begin{tikzpicture}
+	\node[draw, circle, fill=blue!20, minimum size=0.7cm] (v1) at (0,0) {$\color{accent}0$};
+	\node[draw, circle, fill=blue!20, minimum size=0.7cm] (v2) at (2,0) {$\color{accent}0$};
+	\node[draw, circle, fill=blue!20, minimum size=0.7cm] (v3) at (4,0) {$\color{accent}1$};
+	\node[font=\small] at (2,-0.7) {non-constant $\checkmark$};
+	\node[font=\small] at (6,0) {$\Rightarrow$ extends to $F_e$};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Reverse direction: $D(H)$ 2-dicolorable $\Rightarrow$ $H$ 2-colorable}
+Let $\psi\colon V_D \to 2$ be a 2-dicoloring of $D(H)$.
+
+\medskip
+
+Define $\varphi = \psi|_V$ (just \alert{restrict} to the original vertices).
+
+\medskip
+
+For each hyperedge $e = (v_1,v_2,v_3)$:
+\begin{itemize}
+	\item $F_e$ is a subdigraph of $D(H)$
+	\item So $\psi|_{V(F_e)}$ is a valid 2-dicoloring of $F_e$
+	\item By the gadget property: $\varphi(v_1), \varphi(v_2), \varphi(v_3)$ are \alert{not all equal}
+\end{itemize}
+
+\medskip
+
+Hence $\varphi$ is a 2-coloring of $H$. \hfill$\square$
+
+\pause
+\bigskip
+
+\begin{alertblock}{Important observation}
+The reverse direction is a \emph{plain restriction}. No choice, no selection, no local finiteness needed. This will matter in the Borel setting.
+\end{alertblock}
+\end{frame}
+
+% =====================================================================
+% PART IV: THE BOREL LIFTING
+% =====================================================================
+
+\begin{frame}{Borel lifting: the goal}
+\begin{fact}[Thornton]
+The set of nice codes for locally finite Borel 3-uniform hypergraphs admitting a Borel 2-coloring is $\mathbf\Sigma^1_2$-complete.
+\end{fact}
+
+\pause
+\medskip
+
+\textbf{We need to verify:}
+\begin{enumerate}
+	\item The map $\mathrm{code}(H) \mapsto \mathrm{code}(D(H))$ is $\Delta^1_1$.
+	\item ``$H$ is Borel 2-colorable'' $\Longleftrightarrow$ ``$D(H)$ is Borel 2-dicolorable'' with \alert{Borel witnesses}.
+\end{enumerate}
+
+\pause
+\medskip
+
+\begin{block}{Why ``$\Delta^1_1$ on codes''?}
+A $\Delta^1_1$ reduction from a $\Sigma^1_2$-complete set preserves $\Sigma^1_2$-hardness.
+
+So if the reduction is $\Delta^1_1$ and the equivalence holds, the target is also $\Sigma^1_2$-hard.
+\end{block}
+\end{frame}
+
+\begin{frame}{Thornton's coding framework (brief)}
+Fix a good $\omega$-parametrization $U \subseteq \omega \times \NN$ of $\Pi^1_1$.
+
+\medskip
+
+A \alert{nice code} for a $\Delta^1_1$ set $B$ is an index $e$ such that $B$ is simultaneously described by a $\Pi^1_1$ formula and a $\Sigma^1_1$ formula, and these descriptions agree.
+
+\medskip
+
+\textbf{The key tool:}
+
+\begin{lemma}[Thornton's toolkit]
+The following operations are $\Delta^1_1$ in the codes:
+\begin{columns}[t]
+\begin{column}{0.45\textwidth}
+\begin{enumerate}
+	\item $(A,B) \mapsto A \cup B$
+	\item $(A,B) \mapsto A \cap B$
+	\item $(A,B) \mapsto A \times B$
+\end{enumerate}
+\end{column}
+\begin{column}{0.53\textwidth}
+\begin{enumerate}\setcounter{enumi}{3}
+	\item $A \mapsto \dom(A)$
+	\item $(A,f) \mapsto f(A)$, $f$ ctble-to-one
+	\item $A \mapsto$ enum.\ of finite sections
+\end{enumerate}
+\end{column}
+\end{columns}
+\end{lemma}
+
+\medskip
+
+\textbf{Recipe:} Express the construction using these operations $\Rightarrow$ it is $\Delta^1_1$ on codes.
+\end{frame}
+
+\begin{frame}{The construction is $\Delta^1_1$ on codes}
+Let $H$ be a locally finite Borel 3-uniform hypergraph, coded by $(V, E)$. Fix a $\Delta^1_1$ linear order $\preceq$ on $\NN$.
+
+\bigskip
+
+\textbf{Step 1: Sort hyperedges.}
+$$E_{\mathrm{sort}} = \{(a,b,c) \in E : a \preceq b \preceq c\}$$
+\hfill intersection with graph of $\preceq$ $\Rightarrow$ toolkit item (2) \checkmark
+
+\pause
+\bigskip
+
+\textbf{Step 2: Build vertex set.}
+$$V_D = V \cup (E_{\mathrm{sort}} \times T_{\mathrm{aux}})$$
+\hfill product + union $\Rightarrow$ toolkit items (1), (3) \checkmark
+
+\pause
+\bigskip
+
+\textbf{Step 3: Build arc set.} (next slide)
+\end{frame}
+
+\begin{frame}{Building the arc set}
+Define the \alert{substitution map} $\varphi_H\colon E_{\mathrm{sort}} \times E_T \to V_D^2$:
+$$
+(e, (u,v)) \;\longmapsto\; \text{(corresponding arc of $D(H)$)}
+$$
+\begin{itemize}
+	\item shared label in position $i$ $\mapsto$ vertex $v_i$ from $e = (v_1,v_2,v_3)$ \quad (projection)
+	\item auxiliary label $\ell$ $\mapsto$ $(e, \ell)$ \quad (pairing)
+\end{itemize}
+
+\pause
+\medskip
+
+$\varphi_H$ is $\Delta^1_1$ in the code of $H$: it uses projections and products, which are recursive.
+
+\medskip
+
+$\varphi_H$ is \alert{finite-to-one}: $|E_T|$ is fixed, and each vertex appears in finitely many hyperedges (local finiteness).
+
+\medskip
+
+Arc set: $A_D = \varphi_H(E_{\mathrm{sort}} \times E_T)$ \hfill $\Rightarrow$ toolkit item (5) \checkmark
+
+\pause
+\bigskip
+
+\begin{lemma}
+The map $\mathrm{code}(H) \mapsto \mathrm{code}(D(H))$ is $\Delta^1_1$.
+\end{lemma}
+\end{frame}
+
+\begin{frame}{Borel forward direction: Luzin--Novikov}
+\begin{claim}
+If $H$ is Borel 2-colorable, then $D(H)$ is Borel 2-dicolorable.
+\end{claim}
+
+\pause
+
+\begin{proof}
+Let $c\colon V \to 2$ be a Borel 2-coloring of $H$.
+For each $e \in E_{\mathrm{sort}}$, at least one extension to a 2-dicoloring of $F_e$ exists.
+
+\medskip
+
+Define the set of valid local completions:
+$$
+S = \{(e, \sigma) \in E_{\mathrm{sort}} \times \CF : \sigma \text{ extends to a 2-dicoloring of } F_e\}
+$$
+
+$S$ is Borel, with \alert{finite} nonempty sections $S_e$.
+By the \alert{Luzin--Novikov theorem}: $\exists$~Borel selector $e \mapsto \sigma(e) \in S_e$.
+
+\medskip
+
+Pasting these selections with $c$ on shared vertices gives a Borel 2-dicoloring of $D(H)$.
+\end{proof}
+\end{frame}
+
+\begin{frame}{Borel reverse direction: just restrict}
+\begin{claim}
+If $D(H)$ is Borel 2-dicolorable, then $H$ is Borel 2-colorable.
+\end{claim}
+
+\pause
+
+\begin{proof}
+Let $\psi\colon V_D \to 2$ be a Borel 2-dicoloring of $D(H)$.
+
+\medskip
+
+Define $\varphi = \psi|_V$.
+
+\medskip
+
+Since $V \subseteq V_D$ is Borel, $\varphi$ is Borel.
+
+\medskip
+
+For each hyperedge $e$: $F_e \subseteq D(H)$ is a subdigraph, so $\psi|_{V(F_e)}$ is a valid 2-dicoloring, hence the shared-vertex colors are not all equal.
+
+\medskip
+
+So $\varphi$ is a Borel 2-coloring of $H$.
+\end{proof}
+\end{frame}
+
+\begin{frame}{Proof of the main result}
+\begin{proof}[Proof of Proposition]
+
+\textbf{Hardness:} We have a $\Delta^1_1$ reduction from Borel 2-colorable 3-uniform hypergraphs ($\Sigma^1_2$-complete by Thornton) to Borel 2-dicolorable digraphs. Hence the latter is $\Sigma^1_2$-hard.
+
+\pause
+\bigskip
+
+\textbf{Upper bound:}
+$$
+\text{``$D$ admits a Borel 2-dicoloring''}
+\quad\Longleftrightarrow\quad
+\exists\, e_c\; [\underbrace{\text{``$\mathcal{D}_{e_c}$ is a valid 2-dicoloring''}}_{\Pi^1_1}]
+$$
+
+The $\Pi^1_1$ condition checks:
+\begin{itemize}
+	\item totality and range $\subseteq \{0,1\}$ \quad ($\Pi^1_1$)
+	\item each color class induces no directed cycle \quad ($\Pi^1_1$: universal over finite paths)
+\end{itemize}
+
+\medskip
+
+So the set is $\Sigma^1_2$. Combined with hardness: \alert{$\Sigma^1_2$-complete}. \hfill$\square$
+\end{proof}
+\end{frame}
+
+\begin{frame}{The corollary: no countable basis}
+\begin{proof}[Proof of Corollary]
+Suppose $\mathbf{B} = \{H_1, H_2, \ldots\}$ is a countable basis for $\vchi(D) \geq 3$:
+$$
+\vchi(D) \geq 3
+\quad\Longleftrightarrow\quad
+\exists\, n,\ \exists\text{ Borel hom } H_n \to D.
+$$
+
+\pause
+\medskip
+
+For fixed $H_n$: ``$\exists$ Borel hom $H_n \to D$'' is $\Sigma^1_2$ in the code of $D$.
+
+\medskip
+
+Countable union $\Rightarrow$ the right-hand side is $\Sigma^1_2$.
+
+\medskip
+
+But the left-hand side is $\Pi^1_2$-complete (complement of our $\Sigma^1_2$-complete set).
+
+\medskip
+
+$\Pi^1_2 \subseteq \Sigma^1_2$ contradicts the strictness of the projective hierarchy. \hfill$\square$
+\end{proof}
+\end{frame}
+
+\begin{frame}{A stronger conclusion}
+The complexity argument rules out more than just a countable basis.
+
+\pause
+\medskip
+
+\begin{block}{Observation}
+If $\mathbf{B} \in \Sigma^1_2$ as a subset of the code space, then:
+\begin{itemize}
+	\item ``$H \in \mathbf{B}$'' is $\Sigma^1_2$
+	\item ``$\exists$ Borel hom $H \to D$'' is $\Sigma^1_2$
+	\item conjunction and $\exists$-quantification preserve $\Sigma^1_2$
+\end{itemize}
+So the right-hand side would be $\Sigma^1_2$, contradicting $\Pi^1_2$-completeness.
+\end{block}
+
+\pause
+\medskip
+
+\textbf{Conclusion:} Any basis $\mathbf{B}$ must satisfy $\mathbf{B} \notin \Sigma^1_2$. It is at least as complex to describe as the set of all digraphs without a Borel acyclic 2-coloring.
+
+\medskip
+
+\alert{A complexity lower bound destroys all ``simple'' bases, not just countable ones.}
+\end{frame}
+
+% =====================================================================
+% PART V: OPEN QUESTIONS
+% =====================================================================
+
+\begin{frame}{Open questions I: the uncountable threshold}
+Raghavan--Xiao give a continuum-size basis for $\vchi(D) > \aleph_0$.
+
+\medskip
+
+\begin{enumerate}
+	\item[\textbf{Q1.}] \textbf{Is the basis irredundant?} I.e., does removing any single element break the basis? (Likely yes, from pairwise incomparability.)
+
+	\bigskip
+
+	\item[\textbf{Q2.}] \textbf{Can the basis be made smaller?} Is $\mathfrak{c}$ optimal?
+
+	\bigskip
+
+	\item[\textbf{Q3.}] \textbf{Is there a direct (non-complexity) proof} that no \emph{countable} basis exists for $\vchi(D) > \aleph_0$? Perhaps via diagonalization, adapting Miller's anti-basis argument for $G_f$ graphs.
+\end{enumerate}
+
+\medskip
+
+\small
+Note: the complexity approach does \emph{not} work here---the continuum-size basis shows the set is not $\Pi^1_2$-complete.
+\end{frame}
+
+\begin{frame}{Open questions II: structure and CSPs}
+\begin{enumerate}\setcounter{enumi}{3}
+	\item[\textbf{Q4.}] \textbf{Structural restrictions.} Does a countable basis exist for digraphs $G_f$ (generated by a single Borel function) with $\vec\chi_B(G_f) \geq 3$?
+
+	Miller showed no countable basis exists for undirected $G_f$ with $\chi_B \geq 3$.
+
+	\bigskip
+
+	\item[\textbf{Q5.}] \textbf{Bounded width CSPs}. Thornton showed that width 1 structures are exactly those where solvable Borel instances have Borel solutions. Grebík--Vidnyánszky showed the Borel/classical CSP dichotomies diverge.
+
+	\emph{What is the exact complexity dividing line within bounded width?}
+
+	\bigskip
+
+	\item[\textbf{Q6.}] \textbf{Measurable arboricity} (Thornton). Arboricity = undirected analogue of dichromatic number.
+
+	\emph{Can $\mu$-measurable arboricity differ from classical arboricity by more than 1?}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\Huge Thank you.
+\end{center}
+\end{frame}
+
+\end{document}
