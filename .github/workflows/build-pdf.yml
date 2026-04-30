@@ -22,11 +22,17 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
+      
+      - name: Compile slides
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: slides.tex
 
       - name: Prepare Deployment Folder
         run: |
           mkdir public
           mv main.pdf public/
+          mv slides.pdf public/
           touch public/.nojekyll  # <--- THIS FIXES INFINITE LOOPS ON GITHUB PAGES
           echo '<html><body><a href="main.pdf">View PDF</a></body></html>' > public/index.html
 
