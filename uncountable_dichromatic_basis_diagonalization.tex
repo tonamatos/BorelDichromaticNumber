@@ -1,0 +1,482 @@
+\section{The Raghavan--Xiao basis and the countable-basis problem}
+\label{sec:rxcb}
+
+Throughout this section, if $D$ and $H$ are Borel digraphs, then
+$D\preceq_{\mathrm B}H$ means that there is a Borel homomorphism from
+$D$ to $H$.  We write $D\preceq^{\min}_{\mathrm B}H$ when the
+homomorphism can be chosen to be minimal in the sense of
+\cite[Definition~3.10]{RX24}.  Let $\mathcal C_\infty$ denote the class
+of Borel digraphs of uncountable Borel dichromatic number.  The
+citation key \texttt{RX24} is a placeholder for the Raghavan--Xiao
+entry in the surrounding bibliography.
+
+\subsection{What is, and is not, proved in \cite{RX24}}
+\label{subsec:rxcb-audit}
+
+Fix a dense selector $E$.  For $f\in\omega^\omega$ satisfying
+$f(n)\geq2$ for every $n$, put
+\[
+  \mathcal G_f=\mathcal G_0(E,f).
+\]
+Theorem~3.23 of \cite{RX24} says that, for every
+$D\in\mathcal C_\infty$, there are $f$ and a continuous minimal
+homomorphism $\mathcal G_f\to D$.  Theorem~3.25 gives the corresponding
+statement for analytic targets with ``continuous homomorphism'' in
+place of ``continuous minimal homomorphism.''  Conversely,
+Lemma~3.8 implies that every $\mathcal G_f$ belongs to
+$\mathcal C_\infty$.  Consequently,
+\begin{equation}
+  D\in\mathcal C_\infty
+  \quad\Longleftrightarrow\quad
+  (\exists f)\bigl(\mathcal G_f\preceq_{\mathrm B}D\bigr).
+  \label{eq:rxcb-basis}
+\end{equation}
+
+The paper proves the upper bound that a uniformly real-parametrized
+family, and hence a family of cardinality $\mathfrak c$, is a basis.
+It does not prove a lower bound on the cardinality of an arbitrary
+basis.  In particular, it does not rule out a finite or countable
+basis under ordinary Borel homomorphism.  The displayed question
+immediately following the digraph dichotomies is Question~3.26, which
+asks whether minimality can also be obtained for analytic non-Borel
+targets.  Questions~3.42 and~4.23 concern, respectively, the
+classification of quasi-orders of countable Borel order dimension and
+a possible ZFC upper bound for the Borel order dimension of locally
+countable quasi-orders.  None asks for, or proves, the least size of a
+basis for $\mathcal C_\infty$.
+
+The paper also does not state that the fixed-$E$ family
+$\{\mathcal G_f:f\in(\omega\setminus2)^\omega\}$, or any cofinal
+subfamily of it, is pairwise incomparable under ordinary Borel
+homomorphism.  This point is logically important; see
+Lemma~\ref{lem:rxcb-antichain-basis} below.
+
+\subsection{The descriptive complexity of the canonical basis}
+\label{subsec:rxcb-complexity}
+
+\begin{proposition}
+\label{prop:rxcb-basis-complexity}
+Suppose that $E$ is a recursive dense selector.  In any standard
+effective coding of Borel digraphs, the map
+\[
+  f\longmapsto \operatorname{code}(\mathcal G_0(E,f))
+\]
+can be chosen $\Delta^1_1$.  Its untagged range is therefore
+$\boldsymbol\Sigma^1_1$.  If $f$ is retained as part of the code, the
+resulting tagged family is Borel, and it can be made $\Delta^1_1$ in a
+suitable effective coding.  In particular, the Raghavan--Xiao basis
+has an analytic, indeed naturally Borel, presentation and is not
+$\boldsymbol\Pi^1_2$-hard.
+\end{proposition}
+
+\begin{proof}
+Put
+\[
+  X_f=\prod_{n\in\omega}f(n).
+\]
+Uniformly in $f$, this is a closed subset of $\omega^\omega$.  For
+$x,y\in\omega^\omega$, one has
+\begin{align*}
+ (x,y)\in R_{E,f}
+ \quad\Longleftrightarrow\quad
+ &x,y\in X_f\ \text{ and there is }\ell\in\omega\text{ such that}\\
+ &x\mathbin{\upharpoonright}\ell
+   =y\mathbin{\upharpoonright}\ell
+   =E(f\mathbin{\upharpoonright}\ell),\\
+ &y(\ell)=x(\ell)+1\pmod{f(\ell)},\quad\text{and}\quad
+   (\forall k>\ell)\,x(k)=y(k).
+\end{align*}
+For fixed $\ell$, this is a closed condition on $(f,x,y)$.  The
+quantification over $\ell$ is a countable union, so the universal arc
+relation is uniformly $\boldsymbol\Sigma^0_2$.  A Borel code for the
+closed vertex set and the $F_\sigma$ arc relation is therefore
+obtained effectively from $f$.  This gives the asserted
+$\Delta^1_1$ coding map.  Its range is analytic.  Retaining the
+parameter $f$ gives an injective Borel parametrization, whose range is
+Borel by the Lusin--Souslin theorem.
+\end{proof}
+
+\begin{corollary}
+\label{cor:rxcb-high-delta12}
+Relative to a standard space of valid Borel-digraph codes,
+$\mathcal C_\infty$ is both $\boldsymbol\Sigma^1_2$ and
+$\boldsymbol\Pi^1_2$, and hence is $\boldsymbol\Delta^1_2$.
+\end{corollary}
+
+\begin{proof}
+By \eqref{eq:rxcb-basis}, a code $d$ belongs to
+$\mathcal C_\infty$ if and only if there are a real $f$ and a code $u$
+for a Borel function such that $u$ is a homomorphism
+$\mathcal G_f\to D_d$.  Once $f,u,d$ are fixed, totality and
+preservation of arcs form a $\boldsymbol\Pi^1_1$ condition on the
+codes.  Pairing the existentially quantified reals gives a
+$\boldsymbol\Sigma^1_2$ definition.
+
+On the other hand, countable Borel dichromatic number is witnessed by
+one real coding a sequence of Borel acyclic sets covering the vertex
+space.  Validity of the cover and acyclicity of every member are
+$\boldsymbol\Pi^1_1$ conditions.  Thus the complement of
+$\mathcal C_\infty$ is $\boldsymbol\Sigma^1_2$, so
+$\mathcal C_\infty$ is $\boldsymbol\Pi^1_2$ as well.
+\end{proof}
+
+The complexity proof used at a finite dichromatic threshold therefore
+does not transfer to the uncountable threshold.  A countable basis
+would yield a $\boldsymbol\Sigma^1_2$ definition, but the
+Raghavan--Xiao basis already yields such a definition.  This does not
+rule out every conceivable use of descriptive complexity, but it
+removes the $\boldsymbol\Sigma^1_2$ versus
+$\boldsymbol\Pi^1_2$-hard separation that drives the finite-threshold
+argument.
+
+\subsection{The consequence of a genuine antichain basis}
+\label{subsec:rxcb-antichain}
+
+\begin{lemma}[Antichain-basis lemma]
+\label{lem:rxcb-antichain-basis}
+Let $(\mathcal C,\preceq)$ be a quasi-ordered class.  Suppose that
+$\mathcal A\subseteq\mathcal C$ is both a basis for $\mathcal C$ and
+an antichain under $\preceq$.  Then every basis $\mathcal B$ for
+$\mathcal C$ satisfies
+\[
+  |\mathcal B|\geq|\mathcal A|.
+\]
+\end{lemma}
+
+\begin{proof}
+For each $A\in\mathcal A$, choose $B_A\in\mathcal B$ with
+$B_A\preceq A$.  Since $B_A\in\mathcal C$ and $\mathcal A$ is a
+basis, choose $A'\in\mathcal A$ with $A'\preceq B_A$.  Then
+$A'\preceq A$, so incomparability gives $A'=A$.  Hence
+\begin{equation}
+  A\preceq B_A\preceq A.
+  \label{eq:rxcb-sandwich}
+\end{equation}
+If $A_0\neq A_1$ and $B_{A_0}=B_{A_1}$, then
+\eqref{eq:rxcb-sandwich} gives both $A_0\preceq A_1$ and
+$A_1\preceq A_0$, contradicting that $\mathcal A$ is an antichain.
+Thus $A\mapsto B_A$ is injective.
+\end{proof}
+
+\begin{corollary}
+\label{cor:rxcb-conditional-full}
+If a continuum-sized Raghavan--Xiao family is simultaneously
+\begin{enumerate}
+  \item a basis for $\mathcal C_\infty$ under ordinary Borel
+  homomorphism, and
+  \item pairwise incomparable under that same notion of homomorphism,
+\end{enumerate}
+then every basis for $\mathcal C_\infty$ has cardinality
+$\mathfrak c$.  In particular, there is no countable basis.
+\end{corollary}
+
+\begin{proof}
+Apply Lemma~\ref{lem:rxcb-antichain-basis} with
+$\preceq=\preceq_{\mathrm B}$.
+\end{proof}
+
+Thus, if the private statement that the members of ``the basis'' are
+pairwise non-homomorphic refers to an actual cofinal family and to
+ordinary Borel homomorphisms, the conjecture is already an immediate
+corollary.  That interpretation is incompatible with the simultaneous
+assertion that the least size of a basis is open.  The private
+statement may instead concern a non-cofinal subfamily, a different
+choice of parameters, or minimal homomorphisms.  The published paper
+itself does not supply the incomparability hypothesis needed in
+Corollary~\ref{cor:rxcb-conditional-full}.
+
+\subsection{Closed walks and the first diagonal obstruction}
+\label{subsec:rxcb-walks}
+
+For an edge $(x,y)$ of $\mathcal G_g$, its \emph{level} is the unique
+$m$ at which $x$ and $y$ differ.  For
+$B\subseteq\omega\setminus2$, let
+\[
+  \langle B\rangle_+
+  =\left\{\sum_{i<r}q_i b_i:
+    r\geq1,\ b_i\in B,\ q_i\in\omega\setminus\{0\}\right\}
+\]
+be the positive additive monoid generated by $B$.
+
+\begin{lemma}[Level counting]
+\label{lem:rxcb-level-counting}
+Let $W$ be a directed closed walk of $k$ edges in $\mathcal G_g$, and
+let $N_m(W)$ be the number of edges of $W$ having level $m$.  Then
+\[
+  g(m)\mid N_m(W)
+\]
+for every $m$.  Consequently,
+\[
+  k\in\langle\operatorname{ran}(g)\rangle_+,
+\]
+and every level $m$ used by $W$ satisfies $g(m)\leq k$.
+\end{lemma}
+
+\begin{proof}
+An edge of level $m$ increases coordinate $m$ by one modulo $g(m)$.
+Every edge of a different level leaves coordinate $m$ unchanged.
+Since the walk returns to its initial vertex, its total increment in
+coordinate $m$ is zero modulo $g(m)$.  Hence $g(m)$ divides $N_m(W)$.
+Summing the nonzero values $N_m(W)$ gives the other conclusions.
+\end{proof}
+
+\begin{corollary}
+\label{cor:rxcb-monoid-obstruction}
+If there is a homomorphism, with no definability assumption, from
+$\mathcal G_f$ to $\mathcal G_g$, then
+\[
+  \operatorname{ran}(f)
+  \subseteq\langle\operatorname{ran}(g)\rangle_+.
+\]
+Consequently, given $\langle f_n:n\in\omega\rangle$, if there is an
+infinite $B\subseteq\omega\setminus2$ such that
+\begin{equation}
+  \operatorname{ran}(f_n)\not\subseteq\langle B\rangle_+
+  \quad\text{for every }n,
+  \label{eq:rxcb-monoid-diagonal}
+\end{equation}
+then every one-to-one enumeration $g$ of $B$ satisfies
+$\mathcal G_{f_n}\not\preceq_{\mathrm B}\mathcal G_g$ for every $n$.
+\end{corollary}
+
+\begin{proof}
+Every edge at level $\ell$ of $\mathcal G_f$ belongs to a canonical
+cycle with exactly $f(\ell)$ vertices and edges.  A homomorphism sends
+this cycle to a directed closed walk of $f(\ell)$ edges.  Apply
+Lemma~\ref{lem:rxcb-level-counting}.
+\end{proof}
+
+Condition \eqref{eq:rxcb-monoid-diagonal} cannot always be obtained.
+For $k\geq2$, let
+\[
+  f_k(n)=k(n+1).
+\]
+If $B$ is nonempty and $b\in B$, then
+\[
+  \operatorname{ran}(f_b)=\{b,2b,3b,\dots\}
+  \subseteq\langle B\rangle_+.
+\]
+Thus a diagonalization which remembers only the lengths of closed
+walks cannot settle the ordinary-homomorphism problem.  Ordinary
+homomorphisms may fold one cycle onto a shorter cycle, or map it to a
+concatenation of target cycles; for example, the natural map
+$C_6\to C_3$ is a homomorphism.
+
+There is a stronger tail version for continuous homomorphisms.
+
+\begin{lemma}[Tail-monoid obstruction]
+\label{lem:rxcb-tail-monoid}
+If there is a continuous homomorphism
+$\Phi:\mathcal G_f\to\mathcal G_g$, then, for every $N$, there is an
+$L$ such that
+\[
+  f(\ell)\in
+  \left\langle\{g(m):m\geq N\}\right\rangle_+
+  \quad\text{for every }\ell\geq L.
+\]
+\end{lemma}
+
+\begin{proof}
+The space $X_f$ is compact.  By uniform continuity, for each $N$ there
+is $L$ such that
+\[
+  x\mathbin{\upharpoonright}L=y\mathbin{\upharpoonright}L
+  \quad\Longrightarrow\quad
+  \Phi(x)\mathbin{\upharpoonright}N
+   =\Phi(y)\mathbin{\upharpoonright}N.
+\]
+If $\ell\geq L$, all vertices of a canonical level-$\ell$ source
+cycle agree below $L$.  Their images therefore agree below $N$.
+Every target edge in the resulting closed walk has level at least
+$N$.  Lemma~\ref{lem:rxcb-level-counting} now gives the conclusion.
+\end{proof}
+
+Even Lemma~\ref{lem:rxcb-tail-monoid} is not enough for a general
+diagonalization.  For example, if $f(\ell)=\prod_{i=2}^{\ell+2}i$, then for every
+$g$ and every fixed $N$, all sufficiently large $f(\ell)$ are
+multiples of $g(N)$ and hence belong to the monoid generated by the
+$N$th tail of $g$.  A successful proof for ordinary Borel
+homomorphisms must therefore use the incidence pattern of canonical
+cycles, rather than only global or local cycle-length semigroups.
+
+\subsection{A direct ordinary-homomorphism lower bound}
+\label{subsec:rxcb-bounded}
+
+\begin{proposition}[Bounded sources]
+\label{prop:rxcb-bounded-source}
+Suppose that $f$ is bounded, $E$ is dense, and $g$ is one-to-one.
+Then there is no Borel homomorphism from $\mathcal G_f$ to
+$\mathcal G_g$.
+\end{proposition}
+
+\begin{proof}
+Let $K$ bound $f$, and suppose that
+$\Phi:\mathcal G_f\to\mathcal G_g$ is a Borel homomorphism.  Every
+source edge belongs to a canonical cycle of at most $K$ edges.  Its
+image therefore lies on a directed closed walk of at most $K$ edges.
+By Lemma~\ref{lem:rxcb-level-counting}, every image edge has level in
+\[
+  M=\{m:g(m)\leq K\}.
+\]
+The set $M$ is finite because $g$ is one-to-one.  The map
+\[
+  c(x)=\langle x(m):m\in M\rangle
+\]
+takes finitely many values and properly colors the subdigraph of
+$\mathcal G_g$ formed by the edges whose levels lie in $M$.
+Consequently, $c\circ\Phi$ is a finite Borel proper coloring of
+$\mathcal G_f$, and hence a finite Borel dicoloring.  This contradicts
+Lemma~3.8 of \cite{RX24}.
+\end{proof}
+
+\begin{corollary}
+\label{cor:rxcb-no-uniform-basis}
+No countable family of $k$-uniform Borel digraphs, where $k$ may vary
+from one member to another, is a basis for $\mathcal C_\infty$ under
+ordinary Borel homomorphism.
+\end{corollary}
+
+\begin{proof}
+Suppose that $\{H_n:n\in\omega\}$ were such a basis.  Apply the
+boundedness clause of Theorem~3.25 in \cite{RX24} to choose, for every
+$n$, a bounded $f_n$ and a continuous homomorphism
+\[
+  \mathcal G_{f_n}\longrightarrow H_n.
+\]
+Let $g$ be one-to-one.  By Lemma~3.8,
+$\mathcal G_g\in\mathcal C_\infty$.  Hence some $H_n$ admits a Borel
+homomorphism to $\mathcal G_g$.  Composition gives a Borel
+homomorphism $\mathcal G_{f_n}\to\mathcal G_g$, contrary to
+Proposition~\ref{prop:rxcb-bounded-source}.
+\end{proof}
+
+\subsection{A complete diagonalization for minimal homomorphisms}
+\label{subsec:rxcb-minimal}
+
+\begin{lemma}[Rigidity of simple cycles]
+\label{lem:rxcb-cycle-rigidity}
+Every directed cycle with no repeated vertices in $\mathcal G_g$ is a
+canonical cycle at one level $m$.  In particular, every minimal cycle
+in $\mathcal G_g$ has exactly $g(m)$ vertices for some $m$.
+\end{lemma}
+
+\begin{proof}
+Let $C$ be a directed cycle with no repeated vertices, and let $m$ be
+the largest level of an edge of $C$.  Every edge of $C$ preserves all
+coordinates above $m$.  Thus all level-$m$ edges of $C$ have the same
+tail above $m$ and belong to one canonical level-$m$ cycle.  By
+Lemma~\ref{lem:rxcb-level-counting}, the number of level-$m$ edges in
+$C$ is a positive multiple of $g(m)$.  Since $C$ has no repeated
+vertices, it can use at most the $g(m)$ distinct level-$m$ edges with
+that tail.  It therefore uses all of them exactly once.
+
+The terminal vertex of each level-$m$ edge is the initial vertex of
+the next level-$m$ edge in the canonical cyclic order.  A path made of
+lower-level edges preserves coordinate $m$ and the entire tail above
+$m$.  Hence a nonempty lower-level segment between two consecutive
+level-$m$ edges would begin and end at the same vertex, contradicting
+simplicity of $C$.  No lower-level edge occurs, so $C$ is the canonical
+level-$m$ cycle.
+\end{proof}
+
+\begin{lemma}[Diagonal function]
+\label{lem:rxcb-minimal-diagonal}
+For every sequence $\langle f_n:n\in\omega\rangle$ in
+$(\omega\setminus2)^\omega$, there is a one-to-one
+$g\in(\omega\setminus2)^\omega$ such that
+\[
+  \mathcal G_{f_n}\not\preceq^{\min}_{\mathrm B}\mathcal G_g
+  \quad\text{for every }n.
+\]
+\end{lemma}
+
+\begin{proof}
+Let
+\[
+  I=\{n:\operatorname{ran}(f_n)\text{ is infinite}\}.
+\]
+Enumerate $I$ without repetition as $\langle n_j:j\in J\rangle$,
+where $J$ is either a finite initial segment of $\omega$ or all of
+$\omega$.  Recursively choose numbers $a_j,b_j\geq2$, for $j\in J$,
+so that all chosen numbers are distinct and
+\[
+  a_j\in\operatorname{ran}(f_{n_j}).
+\]
+At stage $j$, first choose a number $b_j$ not used earlier.  Then use
+the infinitude of $\operatorname{ran}(f_{n_j})$ to choose $a_j$
+outside all numbers chosen so far, including $b_j$.  If $J$ is finite,
+add infinitely many new numbers to $\{b_j:j\in J\}$.  In either case,
+obtain an infinite set $B\subseteq\omega\setminus2$ such that
+\[
+  a_j\notin B\quad\text{for every }j\in J.
+\]
+Let $g$ be a one-to-one enumeration of $B$.
+
+Suppose first that $n=n_j\in I$.  A minimal homomorphism would map a
+canonical $a_j$-cycle in $\mathcal G_{f_n}$ to a minimal cycle with the
+same number of vertices.  Lemma~\ref{lem:rxcb-cycle-rigidity} would
+then give $a_j=g(m)$ for some $m$, contrary to $a_j\notin B$.
+
+If $n\notin I$, then $f_n$ has finite range and is bounded.
+Proposition~\ref{prop:rxcb-bounded-source} rules out even an ordinary
+Borel homomorphism from $\mathcal G_{f_n}$ to $\mathcal G_g$.
+\end{proof}
+
+\begin{theorem}
+\label{thm:rxcb-no-countable-minimal-basis}
+There is no countable basis for $\mathcal C_\infty$ under Borel
+minimal homomorphism.  The same conclusion holds when all
+homomorphisms in the definition of basis are required to be continuous
+and minimal.
+\end{theorem}
+
+\begin{proof}
+Suppose that $\{H_n:n\in\omega\}$ is a basis under Borel minimal
+homomorphism.  By Theorem~3.23 of \cite{RX24}, choose, for every $n$, a
+function $f_n$ and a continuous minimal homomorphism
+\[
+  \alpha_n:\mathcal G_{f_n}\longrightarrow H_n.
+\]
+Apply Lemma~\ref{lem:rxcb-minimal-diagonal} and obtain a one-to-one $g$
+such that no $\mathcal G_{f_n}$ admits a Borel minimal homomorphism to
+$\mathcal G_g$.  Lemma~3.8 gives
+$\mathcal G_g\in\mathcal C_\infty$.  Hence the basis assumption yields
+an $n$ and a Borel minimal homomorphism
+\[
+  \beta:H_n\longrightarrow\mathcal G_g.
+\]
+Minimal homomorphisms are closed under composition: the first map
+sends each induced directed cycle isomorphically onto an induced cycle
+of the same size, to which the second map's minimality applies.
+Therefore $\beta\circ\alpha_n$ is a Borel minimal homomorphism from
+$\mathcal G_{f_n}$ to $\mathcal G_g$, a contradiction.  The continuous
+version is identical.
+\end{proof}
+
+\subsection{Status of the ordinary-homomorphism conjecture}
+\label{subsec:rxcb-status}
+
+Theorem~\ref{thm:rxcb-no-countable-minimal-basis} does not settle the
+basis problem under ordinary Borel homomorphism.  This is not merely a
+regularity gap.  An ordinary homomorphism may fold a canonical cycle
+or send it around several target cycles, and
+Lemma~\ref{lem:rxcb-level-counting} shows that the first numerical
+invariant is the additive monoid generated by target cycle sizes.
+The family
+\[
+  \bigl\{\{k,2k,3k,\dots\}:k\geq2\bigr\}
+\]
+shows that no range-only diagonal can handle every countable family,
+and factorial sequences defeat even the tail-monoid obstruction for
+continuous maps.
+
+Accordingly, a proof of the full conjecture must exploit the way
+canonical cycles at different levels intersect, or prove a
+canonization theorem saying that every Borel homomorphism into a
+suitably chosen $\mathcal G_0(E,g)$ becomes cycle-injective or minimal
+on a canonical substructure.  No such statement is proved in
+\cite{RX24}, and the arguments above do not establish it.  On the
+other hand, Corollary~\ref{cor:rxcb-conditional-full} shows that a
+verified pairwise-incomparability theorem for an actual cofinal
+Raghavan--Xiao family would immediately prove the ordinary-homomorphism
+conjecture.
